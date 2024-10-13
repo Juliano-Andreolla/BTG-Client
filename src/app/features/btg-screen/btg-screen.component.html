@@ -1,0 +1,43 @@
+<div class="btg-screen-container mat-elevation-z8">
+    <mat-card appearance="raised">
+        <mat-card-header class="btg-screen-container__header">
+            <mat-card-title>Backing Track Generator</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="btg-screen-container__content">
+            <form [formGroup]="formGroup" class="btg-screen-container__content__form">
+                    <mat-slide-toggle class="btg-screen-container__content__form__slide-toggle"
+                        (change)="onFileSourceChange($event)">Source Material</mat-slide-toggle>
+                <mat-form-field class="btg-screen-container__content__form__field"
+                    appearance="outline" *ngIf="!sourceCheck">
+                    <mat-label>Youtube Link</mat-label>
+                    <input matInput formControlName="link">
+                </mat-form-field>
+                <mat-form-field class="btg-screen-container__content__form__field"
+                    appearance="outline" *ngIf="sourceCheck">
+                    <mat-label>File Directory</mat-label>
+                    <input matInput formControlName="path">
+                </mat-form-field>
+                <div class="btg-screen-container__content__form__field-group">
+                    <mat-form-field class="btg-screen-container__content__form__field-group__field"
+                        appearance="outline">
+                        <mat-label>Pitch Shift</mat-label>
+                        <input matInput type="number" formControlName="pitchShift" placeholder="0" />
+                    </mat-form-field>
+                    <mat-form-field class="btg-screen-container__content__form__field-group__field"
+                        appearance="outline" >
+                        <mat-label>Model</mat-label>
+                        <mat-select formControlName="model">
+                            <mat-option *ngFor="let model of models" [value]="model">{{model.name}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-icon class="btg-screen-container__content__form__field-group__tooltip-icon"
+                        [matTooltip]="selectedModelDescription" #tooltip="matTooltip" message="test">info</mat-icon>
+                </div>
+                <mat-form-field appearance="outline" class="btg-screen-container__content__form__field">
+                    <mat-label>Log</mat-label>
+                    <textarea matInput readonly [value]="logValue"></textarea>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

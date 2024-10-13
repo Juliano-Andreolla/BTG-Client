@@ -1,0 +1,8 @@
+.btg-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+@import './features/btg-screen/btg-screen.scss';
