@@ -5,6 +5,7 @@ import { SharedModule } from '../shared/modules/shared.module';
 
 import { AngularMaterialModule } from '../shared/modules/angular-material.module';
 import { ToastrModule } from 'ngx-toastr';
+import { NumericInputPipe } from '../shared/pipes/numeric-input.pipe';
 
 @NgModule({
   declarations: [
@@ -20,5 +21,6 @@ import { ToastrModule } from 'ngx-toastr';
         positionClass: 'toast-top-right',
     }),
   ],
+  providers: [NumericInputPipe]
 })
 export class BtgScreenModule { }

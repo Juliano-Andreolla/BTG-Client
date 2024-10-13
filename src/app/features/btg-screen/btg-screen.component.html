@@ -9,22 +9,27 @@
                         (change)="onFileSourceChange($event)">Source Material</mat-slide-toggle>
                 <mat-form-field class="btg-screen-container__content__form__field"
                     appearance="outline" *ngIf="!sourceCheck">
-                    <mat-label>Youtube Link</mat-label>
-                    <input matInput formControlName="link">
+                    <mat-label>Youtube URL</mat-label>
+                    <input matInput formControlName="source">
                 </mat-form-field>
                 <mat-form-field class="btg-screen-container__content__form__field"
                     appearance="outline" *ngIf="sourceCheck">
                     <mat-label>File Directory</mat-label>
-                    <input matInput formControlName="path">
+                    <input matInput formControlName="source">
+                </mat-form-field>
+                <mat-form-field class="btg-screen-container__content__form__field"
+                    appearance="outline">
+                    <mat-label>Output Path (Optional)</mat-label>
+                    <input matInput formControlName="output" placeholder="Ex: C:\Users\User\Documents\Song.mp3">
                 </mat-form-field>
                 <div class="btg-screen-container__content__form__field-group">
                     <mat-form-field class="btg-screen-container__content__form__field-group__field"
                         appearance="outline">
-                        <mat-label>Pitch Shift</mat-label>
-                        <input matInput type="number" formControlName="pitchShift" placeholder="0" />
+                        <mat-label>Pitch Shift (Range from -9 to 9)</mat-label>
+                        <input matInput type="number" min="-9" max="9" formControlName="pitchShift" (blur)="onNumericInputBlur()"/>
                     </mat-form-field>
                     <mat-form-field class="btg-screen-container__content__form__field-group__field"
-                        appearance="outline" >
+                        appearance="outline">
                         <mat-label>Model</mat-label>
                         <mat-select formControlName="model">
                             <mat-option *ngFor="let model of models" [value]="model">{{model.name}}</mat-option>
@@ -32,6 +37,10 @@
                     </mat-form-field>
                     <mat-icon class="btg-screen-container__content__form__field-group__tooltip-icon"
                         [matTooltip]="selectedModelDescription" #tooltip="matTooltip" message="test">info</mat-icon>
+                </div>
+                <div class="btg-screen-container__content__form__actions">
+                    <button mat-raised-button color="primary" [disabled]="processing || !formGroup.valid">Process File</button>
+                    <button mat-raised-button [disabled]="!processing">Cancel</button>
                 </div>
                 <mat-form-field appearance="outline" class="btg-screen-container__content__form__field">
                     <mat-label>Log</mat-label>
